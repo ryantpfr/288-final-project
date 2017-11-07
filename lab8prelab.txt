@@ -1,0 +1,50 @@
+
+
+1. the servo works by using an error amplifier to send the difference between the supplied voltage and the potentiometer voltage
+	to the motor. This results in the servo always moving towards the intnded position.
+	
+2. 
+TIMER1_CTL_R 
+SYSCTL_RCGCTIMER_R 
+TIMER0_TAMR_R
+TIMER0_CFG_R 
+TIMER0_TAILR_R
+TIMER0_TAPR_R
+GPTMTAMATCHR0
+
+
+3. 
+
+16 mHz -> 62.5  ns
+20 ms -> 20,000,000 ns
+
+20,000,000 / 62.5 = 320,000 clock cycles
+
+
+4. when the servo is non inverted 0v is the max in one direction and Vmax is the max in the other.
+	therefore the central position is the average of the two voltages
+	
+	
+	
+pwm_timer_init(int cycleswithLowPower){
+	1.TnEN is cleared
+	2.GPTMCFG = 0x00000004;
+	3.In the GPTM Timer Mode (GPTMTnMR) register, set the TnAMS bit to 0x1, the TnCMR bit to
+	0x0, and the TnMR field to 0x2.
+	4.GPTMCTL = 
+}
+
+main{
+	pwm_timer_init(someVal);
+
+	while(true){
+
+		button = get_button();
+
+
+		switch(button){
+			case(1) : init(someOtherVal via arithmetic); break;
+			...............
+		}
+	}
+}
