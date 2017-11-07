@@ -13,7 +13,9 @@ C_SRCS += \
 ../helloworld.c \
 ../ir.c \
 ../lcd.c \
+../movement.c \
 ../objectcounter.c \
+../open_interface.c \
 ../ping.c \
 ../ping2.c \
 ../servo.c \
@@ -27,7 +29,9 @@ C_DEPS += \
 ./helloworld.d \
 ./ir.d \
 ./lcd.d \
+./movement.d \
 ./objectcounter.d \
+./open_interface.d \
 ./ping.d \
 ./ping2.d \
 ./servo.d \
@@ -41,7 +45,9 @@ OBJS += \
 ./helloworld.obj \
 ./ir.obj \
 ./lcd.obj \
+./movement.obj \
 ./objectcounter.obj \
+./open_interface.obj \
 ./ping.obj \
 ./ping2.obj \
 ./servo.obj \
@@ -55,7 +61,9 @@ OBJS__QUOTED += \
 "helloworld.obj" \
 "ir.obj" \
 "lcd.obj" \
+"movement.obj" \
 "objectcounter.obj" \
+"open_interface.obj" \
 "ping.obj" \
 "ping2.obj" \
 "servo.obj" \
@@ -69,7 +77,9 @@ C_DEPS__QUOTED += \
 "helloworld.d" \
 "ir.d" \
 "lcd.d" \
+"movement.d" \
 "objectcounter.d" \
+"open_interface.d" \
 "ping.d" \
 "ping2.d" \
 "servo.d" \
@@ -83,7 +93,9 @@ C_SRCS__QUOTED += \
 "../helloworld.c" \
 "../ir.c" \
 "../lcd.c" \
+"../movement.c" \
 "../objectcounter.c" \
+"../open_interface.c" \
 "../ping.c" \
 "../ping2.c" \
 "../servo.c" \

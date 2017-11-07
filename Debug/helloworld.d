@@ -20,6 +20,13 @@ helloworld.obj: ../banner.h
 helloworld.obj: ../ir.h
 helloworld.obj: ../ping2.h
 helloworld.obj: ../objectcounter.h
+helloworld.obj: ../open_interface.h
+helloworld.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/stdio.h
+helloworld.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/string.h
+helloworld.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/stdlib.h
+helloworld.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/math.h
+helloworld.obj: C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/_defs.h
+helloworld.obj: ../movement.h
 
 ../helloworld.c: 
 ../timer.h: 
@@ -41,3 +48,10 @@ C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/string.h:
 ../ir.h: 
 ../ping2.h: 
 ../objectcounter.h: 
+../open_interface.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/stdio.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/string.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/stdlib.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/math.h: 
+C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include/_defs.h: 
+../movement.h: 
