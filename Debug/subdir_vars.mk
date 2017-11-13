@@ -10,6 +10,7 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../button.c \
+../command_parser.c \
 ../helloworld.c \
 ../ir.c \
 ../lcd.c \
@@ -26,6 +27,7 @@ C_SRCS += \
 
 C_DEPS += \
 ./button.d \
+./command_parser.d \
 ./helloworld.d \
 ./ir.d \
 ./lcd.d \
@@ -42,6 +44,7 @@ C_DEPS += \
 
 OBJS += \
 ./button.obj \
+./command_parser.obj \
 ./helloworld.obj \
 ./ir.obj \
 ./lcd.obj \
@@ -58,6 +61,7 @@ OBJS += \
 
 OBJS__QUOTED += \
 "button.obj" \
+"command_parser.obj" \
 "helloworld.obj" \
 "ir.obj" \
 "lcd.obj" \
@@ -74,6 +78,7 @@ OBJS__QUOTED += \
 
 C_DEPS__QUOTED += \
 "button.d" \
+"command_parser.d" \
 "helloworld.d" \
 "ir.d" \
 "lcd.d" \
@@ -90,6 +95,7 @@ C_DEPS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../button.c" \
+"../command_parser.c" \
 "../helloworld.c" \
 "../ir.c" \
 "../lcd.c" \
