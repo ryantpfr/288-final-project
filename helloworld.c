@@ -39,4 +39,7 @@ int main(void)
 
 
     sweep_and_send();
+
+
+    while(true);
 }
