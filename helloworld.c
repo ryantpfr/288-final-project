@@ -27,8 +27,7 @@ void wifi_continue(){
 }
 
 
-int main(void)
-{
+void init_all(oi_t *sensor_data){
     IR_init();
     lcd_init();
     gpio_pb5_init();
@@ -36,9 +35,45 @@ int main(void)
     button_init();
     ping_gpioInit();
     timer_3_init();
+    oi_init(sensor_data);
+}
 
 
-    sweep_and_send();
+bool readSensors(oi_t *sensor_data){
+
+    if( sensor_data->bumpLeft == 1){
+        return true;
+    }
+    if( sensor_data->bumpRight == 1){
+        return true;
+    }
+
+    return false;
+}
+
+int main(void)
+{
+    oi_t *sensor_data = oi_alloc();
+    init_all(sensor_data);
+
+//    move_mm_at_speed_until_collision(1000, 50,sensor_data);
+//
+//    timer_waitMillis(200);
+//
+//    move_mm_at_speed_until_collision(1000, 50,sensor_data);
+
+    //move_at_speed(50,sensor_data);
+
+    lcd_printf("hello");
+
+    while(true){
+        lcd_printf("hello : %d",sensor_data->bumpRight);
+        move_stop();
+        if(readSensors(sensor_data) == true){
+            move_stop();
+            break;
+        }
+    }
 
 
     while(true);

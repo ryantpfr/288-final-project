@@ -4,6 +4,10 @@
 volatile char lastCharacter;
 volatile bool lastCharacterRead = true;
 
+//volatile char command[20];
+//volatile int commandLength;
+//volatile int commandRemaining = -1;
+
 void transmit_str(char str[]){
     int i;
     for(i = 0; str[i] != '\0'; i++){
@@ -108,7 +112,8 @@ void uart_receive(void)
     //mask the 4 error bits and grab only 8 data bits
     data = (char)(UART1_DR_R & 0xFF);
 
-    if( data=='\r' || data=='\n') return;
+    //removed for final project
+    //if( data=='\r' || data=='\n') return;
 
     lastCharacter = data;
     lastCharacterRead = false;
