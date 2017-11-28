@@ -3,6 +3,9 @@
 #include "stdio.h"
 #include "movement.h"
 
+#define TURN_SPEED 200
+#define TURN_CALIBRATION 1.045 // for cyBot-5
+
 void move_cm_at_full_speed(int cm, oi_t* sensor_data){
     move_mm_at_speed(cm, 500, sensor_data);
 }
@@ -63,34 +66,26 @@ struct CollisionResult move_mm_at_speed_until_collision(int cm, int speed, oi_t*
     return res;
 }
 
-void move_at_speed(int speed){
-
-    oi_setWheels(speed, speed);
-}
-
-void move_stop(){
-    oi_setWheels(0, 0);
-}
-
 void turn_right(int degrees, oi_t* sensor_data)
 {
+    degrees = (int) degrees * TURN_CALIBRATION;
+
     int stopAt = sensor_data->angle - degrees;
     int sum = 0;
-     oi_setWheels(-80, 80); // move forward; full speed
+     oi_setWheels(-TURN_SPEED, TURN_SPEED); // move forward; full speed
      while (sum > stopAt) {
       oi_update(sensor_data);
        sum += sensor_data->angle;
        lcd_printf("%d\n%d\n",sensor_data->angle, sum);
      }
      oi_setWheels(0, 0);
-
 }
 
 void turn_left(int degrees, oi_t* sensor_data)
 {
     int stopAt = sensor_data->angle + degrees;
     int sum = 0;
-     oi_setWheels(80, -80); // move forward; full speed
+     oi_setWheels(TURN_SPEED,-TURN_SPEED); // move forward; full speed
      while (sum < stopAt) {
       oi_update(sensor_data);
        sum += sensor_data->angle;

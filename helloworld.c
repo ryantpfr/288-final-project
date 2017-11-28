@@ -66,7 +66,6 @@ int main(void)
 
         if(!readLCharRead()){//enters if the last character has not been acted on
             char c = uart_receive_last();
-            lcd_printf("%d",c);
             take_char(c);
         }
 

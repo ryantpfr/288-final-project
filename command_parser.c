@@ -10,7 +10,7 @@ int commandPosition = 0;
 int execute_command(){
     switch(command[0]){
     case(0) :
-        exe_move(command[1]);
+        exe_move(command[1], command[2]);
         break;
     case(1) :
         exe_turn(command[1], command[2]);
@@ -33,8 +33,8 @@ int rtn_cmd_len(char cmd_byte)
   switch(cmd_byte) {
 
      //Make this value 1 Byte and then multiply it by a constant multiplied by 2. Input here is -100 or 100 in signed byte.
-     case 0 : //forward/reverse; <cmd>, <speed -100 - 100>
-        cmd_len = 1;
+     case 0 : //forward/reverse; <cmd>, <dir>, <speed -100 - 100>
+        cmd_len = 2;
         break;
      case 1 : //turn distance t; <cmd>, <dir>, <degrees/2> //turns from -90 -> 90
         cmd_len = 2;
