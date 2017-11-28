@@ -149,4 +149,15 @@ char uart_receive2(void)
     return data;
 }
 
+char uart_receive_last(void)
+{
+    //mask the 4 error bits and grab only 8 data bits
+    char data = lastCharacter;
+
+    lastCharacterRead = true;
+
+    return data;
+}
+
+
 

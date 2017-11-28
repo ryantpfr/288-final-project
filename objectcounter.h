@@ -5,4 +5,4 @@ int getMinDegrees();
 int getMinSize();
 void objCounterReset();
 
-sweep_and_send();
+void sweep_and_send();

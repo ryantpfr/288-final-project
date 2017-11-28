@@ -4,13 +4,14 @@
 
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS
+CG_TOOL_ROOT := C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS
 
 GEN_OPTS__FLAG := 
 GEN_CMDS__FLAG := 
 
 ORDERED_OBJS += \
 "./button.obj" \
+"./cmd_executer.obj" \
 "./command_parser.obj" \
 "./helloworld.obj" \
 "./ir.obj" \
@@ -155,21 +156,21 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 Final\ Project\ CyBot.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Final Project CyBot.map" --heap_size=1024 --stack_size=2048 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Final Project CyBot_linkInfo.xml" --rom_model -o "Final Project CyBot.out" $(ORDERED_OBJS)
+	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=ccs="ccs" --define=PART_TM4C123GH6PM -g --gcc --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"Final Project CyBot.map" --heap_size=1024 --stack_size=2048 -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/lib" -i"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/include" --reread_libs --diag_wrap=off --display_error_number --warn_sections --xml_link_info="Final Project CyBot_linkInfo.xml" --rom_model -o "Final Project CyBot.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 
 Final\ Project\ CyBot.hex: $(EXE_OUTPUTS)
 	@echo 'Invoking: ARM Hex Utility'
-	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.1.LTS/bin/armhex"  -o "Final Project CyBot.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccsv7/tools/compiler/ti-cgt-arm_16.9.4.LTS/bin/armhex"  -o "Final Project CyBot.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "button.obj" "command_parser.obj" "helloworld.obj" "ir.obj" "lcd.obj" "movement.obj" "objectcounter.obj" "open_interface.obj" "ping.obj" "ping2.obj" "servo.obj" "timer.obj" "tm4c123gh6pm_startup_ccs.obj" "uart.obj" "wifi.obj" 
-	-$(RM) "button.d" "command_parser.d" "helloworld.d" "ir.d" "lcd.d" "movement.d" "objectcounter.d" "open_interface.d" "ping.d" "ping2.d" "servo.d" "timer.d" "tm4c123gh6pm_startup_ccs.d" "uart.d" "wifi.d" 
+	-$(RM) "button.obj" "cmd_executer.obj" "command_parser.obj" "helloworld.obj" "ir.obj" "lcd.obj" "movement.obj" "objectcounter.obj" "open_interface.obj" "ping.obj" "ping2.obj" "servo.obj" "timer.obj" "tm4c123gh6pm_startup_ccs.obj" "uart.obj" "wifi.obj" 
+	-$(RM) "button.d" "cmd_executer.d" "command_parser.d" "helloworld.d" "ir.d" "lcd.d" "movement.d" "objectcounter.d" "open_interface.d" "ping.d" "ping2.d" "servo.d" "timer.d" "tm4c123gh6pm_startup_ccs.d" "uart.d" "wifi.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

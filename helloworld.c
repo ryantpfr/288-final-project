@@ -12,6 +12,7 @@
 #include "objectcounter.h"
 #include "open_interface.h"
 #include "movement.h"
+#include "uart.h"
 
 
 void wifi_continue(){
@@ -36,6 +37,9 @@ void init_all(oi_t *sensor_data){
     ping_gpioInit();
     timer_3_init();
     oi_init(sensor_data);
+    uart_init();
+    int success = WiFi_start("password1");
+
 }
 
 
@@ -56,6 +60,19 @@ int main(void)
     oi_t *sensor_data = oi_alloc();
     init_all(sensor_data);
 
+    wifi_continue();
+
+    while(true){
+
+        if(!readLCharRead()){//enters if the last character has not been acted on
+            char c = uart_receive_last();
+            lcd_printf("%d",c);
+            take_char(c);
+        }
+
+    }
+
+
 //    move_mm_at_speed_until_collision(1000, 50,sensor_data);
 //
 //    timer_waitMillis(200);
@@ -63,20 +80,17 @@ int main(void)
 //    move_mm_at_speed_until_collision(1000, 50,sensor_data);
 
     //move_at_speed(50,sensor_data);
-
-    lcd_printf("hello");
-
-    while(true){
-        lcd_printf("hello : %d",sensor_data->bumpRight);
-        move_stop();
-        if(readSensors(sensor_data) == true){
-            move_stop();
-            break;
-        }
-    }
-
-
-    //hello from chris2
+//
+//    lcd_printf("hello");
+//
+//    while(true){
+//        lcd_printf("hello : %d",sensor_data->bumpRight);
+//        move_stop();
+//        if(readSensors(sensor_data) == true){
+//            move_stop();
+//            break;
+//        }
+//    }
 
     while(true);
 }

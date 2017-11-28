@@ -14,3 +14,4 @@ char uart_receive2(void);
 char readLChar();
 bool readLCharRead();
 void setLCharRead();
+char uart_receive_last(void);
