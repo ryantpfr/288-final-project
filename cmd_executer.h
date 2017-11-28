@@ -3,7 +3,10 @@
 //author: Christopher Caldwell
 
 #include <stdio.h>
+#include "open_interface.h"
+
 
 void exe_scan();
-void exe_turn(char commands[]);
-void exe_move(char commands[]);
+void exe_turn(char dir, char degree);
+void exe_move(char speed);
+void exe_init(oi_t* sensor_data);

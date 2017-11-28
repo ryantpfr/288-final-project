@@ -63,7 +63,7 @@ struct CollisionResult move_mm_at_speed_until_collision(int cm, int speed, oi_t*
     return res;
 }
 
-void move_at_speed(int speed, oi_t* sensor_data){
+void move_at_speed(int speed){
 
     oi_setWheels(speed, speed);
 }

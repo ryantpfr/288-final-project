@@ -1,4 +1,5 @@
 #include "stdbool.h"
+#include "open_interface.h"
 
 struct CollisionResult{
     bool collision;
@@ -20,4 +21,4 @@ void turn_left(int degrees, oi_t* sensor_data);
 
 void move_stop();
 
-void move_at_speed(int speed, oi_t* sensor_data);
+void move_at_speed(int speed);
