@@ -10,18 +10,23 @@ void move_cm_at_full_speed(int cm, oi_t* sensor_data){
     move_mm_at_speed(cm, 500, sensor_data);
 }
 
-void move_mm_at_speed(int cm, int speed, oi_t* sensor_data){
+void move_straight(int speed, oi_t* sensor_data){
 
-    lcd_printf("hello world2");
-
-    int sum = 0;
-       oi_setWheels(speed, speed); // move forward; full speed
-       while (sum < cm) {
-           oi_update(sensor_data);
-           sum += sensor_data->distance;
-           //printf("%d\n",sum);
-       }
-       oi_setWheels(0, 0); // stop
+    if (speed > 0)
+    {
+      oi_setWheels(speed, speed);
+      lcd_printf("forward");
+    }
+    else if (speed == 0)
+    {
+      oi_setWheels(speed, speed);
+      lcd_printf("stop");
+    }
+    else if (speed < 0)
+    {
+      oi_setWheels(-speed, -speed);
+      lcd_printf("reverse");
+    }
 }
 
 void move_back_mm_at_speed(int cm, int speed, oi_t* sensor_data){
@@ -70,12 +75,12 @@ void turn_right(int degrees, oi_t* sensor_data)
 {
     degrees = (int) degrees * TURN_CALIBRATION;
 
-    int stopAt = sensor_data->angle - degrees;
+    //int stopAt = sensor_data->angle - degrees;
     int sum = 0;
      oi_setWheels(-TURN_SPEED, TURN_SPEED); // move forward; full speed
-     while (sum > stopAt) {
+     while (sum < degrees) {
       oi_update(sensor_data);
-       sum += sensor_data->angle;
+       sum += abs(sensor_data->angle);
        lcd_printf("%d\n%d\n",sensor_data->angle, sum);
      }
      oi_setWheels(0, 0);
@@ -92,5 +97,23 @@ void turn_left(int degrees, oi_t* sensor_data)
        lcd_printf("%d\n%d\n",sensor_data->angle, sum);
      }
      oi_setWheels(0, 0);
+
+void turn(char dir, oi_t* sensor_data)
+{
+    if(dir > -1) //right
+    {
+        oi_setWheels(-TURN_SPEED, TURN_SPEED);
+    }
+    else if(dir == 0) //stop; might not be necessary
+    {
+        oi_setWheels(0, 0);
+    }
+    else if(dir == 1) //left
+    {
+        oi_setWheels(TURN_SPEED, -TURN_SPEED);
+    }
+
+    return sensor_data->angle;
+}
 
 }

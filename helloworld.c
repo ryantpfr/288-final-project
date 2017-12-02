@@ -66,7 +66,7 @@ int main(void)
 
         if(!readLCharRead()){//enters if the last character has not been acted on
             char c = uart_receive_last();
-            take_char(c);
+            exe_op((op_cmds) c, sensor_data);
         }
 
     }

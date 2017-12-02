@@ -19,18 +19,9 @@ void exe_scan(){
 }
 
 
-void exe_move(char dir, char speed){ //dir == 0 => forward, dir == 1 => reverse
-
-    int dist_c = 50; //cm
-
-    if(dir == 0)
-        {
-            move_mm_at_speed(dist_c, speed, sensor_data); //void move_back_mm_at_speed(int cm, int speed, oi_t* sensor_data)
-        }
-    else if(dir == 1)
-        {
-            move_back_mm_at_speed(dist_c, speed, sensor_data);
-        }
+void exe_move(char speed)  //forward/reverse : <cmd> <speed> : ex. cmds: 0 100 or 0 -100
+{
+    move_straight(speed, sensor_data);
 }
 
 
