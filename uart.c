@@ -17,6 +17,13 @@ void transmit_str(char str[]){
     uart_transmit('\n');
 }
 
+void transmit_str_num(char str[],int num){
+    int i;
+    for(i = 0; i < num; i++){
+        uart_transmit(str[i]);
+    }
+}
+
 char readLChar(){
     return lastCharacter;
 }

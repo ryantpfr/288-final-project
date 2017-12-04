@@ -59,15 +59,22 @@ void createObject(){
 
 
 //    int size = (tan((theta/2)*(PI/180))*pingMid)/(1-tan((theta/2)*(PI/180)))*1.5;
-    int size = 2 * pingMid*(tan((theta/2)*(PI/180)));
+    uint32_t size = 2 * pingMid*(tan((theta/2)*(PI/180)));
 
     if(size < minVal){
         minVal = size;
         minDegrees = midNum;
     }
 
+    char objData[] = {5,newObjectStart+theta/2,size>>8,size & 0xFF,pingMid>>2};
 
-    //transmit_str(message);
+    //transmit_str_num(objData,5);
+
+    //lcd_printf(objData);
+
+    //while(true);
+
+    transmit_str(message);
 }
 
 void counter_write(int degrees, int ir, int ping){
@@ -98,7 +105,7 @@ void counter_write(int degrees, int ir, int ping){
         case(testing_back_edge) :
                 if(ir > SENSITIVITY){
                     state = no_obj;
-                    newObjectEnd = clockwise ? convertedDegrees+2 : convertedDegrees-2;
+                    newObjectEnd = clockwise ? convertedDegrees+2: convertedDegrees-2;
                     createObject();
                 }else{
                     state = curr_obj;
@@ -141,6 +148,8 @@ void reset_direction(int* direction, int* degrees){
 
 void sweep_and_send(){
 
+    char startCommand[] = {4};
+    transmit_str_num(startCommand,1);
     objCounterReset();
 
     int direction = 1;
@@ -152,7 +161,7 @@ void sweep_and_send(){
        gpio_ping_micros(10);
 
        degrees += direction*2;
-       servo_set_degrees(degrees);
+       servo_set_degrees_scan(degrees);
        reset_direction(&direction,&degrees);
 
        int irData = IR_ReadMM();

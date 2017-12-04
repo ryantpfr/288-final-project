@@ -4,13 +4,15 @@
 
 #include <stdio.h>
 #include "cmd_executer.h"
-include "objectcounter.h"
+#include "objectcounter.h"
 #include "open_interface.h"
 #include "movement.h"
+#include "exe_op.h"
+#include "music.h"
 
-oi_t* sensor_data;
 
-enum op_cmds
+
+/*enum op_cmds
 {
     forward,
     reverse,
@@ -19,7 +21,7 @@ enum op_cmds
     scan,
     song,
     stop
-};
+};*/
 
 /*
 Below is the new exe_move that handles all movement and scanning.
@@ -44,8 +46,15 @@ void exe_op(op_cmds dir, oi_t* sensor_data)
     case scan:
         sweep_and_send();
         break;
-    case song:
+    case song1: //backup beep
         //TODO
+        break;
+    case song2: //RickRoll
+        oi_play_song(RICK_ROLL);
+        break;
+    case song3: //Imperial March
+        oi_play_song(BLUES_D);
+        //oi_play_song(IMPERIAL_MARCH2);
         break;
     default: //stop
         oi_setWheels(0,0);
@@ -53,4 +62,4 @@ void exe_op(op_cmds dir, oi_t* sensor_data)
     }
 }
 
-}
+

@@ -2,12 +2,16 @@
 #include "lcd.h"
 #include "stdio.h"
 #include "movement.h"
+#include "exe_op.h"
 
-#define TURN_SPEED 200
-#define TURN_CALIBRATION 1.045 // for cyBot-5
+
 
 void move_cm_at_full_speed(int cm, oi_t* sensor_data){
     move_mm_at_speed(cm, 500, sensor_data);
+}
+
+void move_stop(oi_t* sensor_data){
+    oi_setWheels(0, 0);
 }
 
 void move_straight(int speed, oi_t* sensor_data){
@@ -28,6 +32,20 @@ void move_straight(int speed, oi_t* sensor_data){
       lcd_printf("reverse");
     }
 }
+
+void move_mm_at_speed(int cm, int speed, oi_t* sensor_data){
+
+    lcd_printf("hello world2");
+
+    int sum = 0;
+       oi_setWheels(speed, speed); // move forward; full speed
+       while (sum < cm) {
+           oi_update(sensor_data);
+           sum += sensor_data->distance;
+       }
+       oi_setWheels(0, 0); // stop
+}
+
 
 void move_back_mm_at_speed(int cm, int speed, oi_t* sensor_data){
 
@@ -97,6 +115,7 @@ void turn_left(int degrees, oi_t* sensor_data)
        lcd_printf("%d\n%d\n",sensor_data->angle, sum);
      }
      oi_setWheels(0, 0);
+}
 
 void turn(char dir, oi_t* sensor_data)
 {
@@ -116,4 +135,4 @@ void turn(char dir, oi_t* sensor_data)
     return sensor_data->angle;
 }
 
-}
+

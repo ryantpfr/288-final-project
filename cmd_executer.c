@@ -19,10 +19,10 @@ void exe_scan(){
 }
 
 
-void exe_move(char speed)  //forward/reverse : <cmd> <speed> : ex. cmds: 0 100 or 0 -100
-{
-    move_straight(speed, sensor_data);
-}
+//void exe_move(char speed)  //forward/reverse : <cmd> <speed> : ex. cmds: 0 100 or 0 -100
+//{
+//    move_straight(speed, sensor_data);
+//}
 
 
 void exe_turn(char dir, char degree) //dir == 0 => right, dir == 1 => left

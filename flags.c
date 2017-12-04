@@ -1,119 +1,143 @@
 //flags module
+#include "flags.h"
+#include <stdbool.h>
 
-char cliff_f = 0; //boolean
 
-#define cliffL_f 0b1000;
-#define cliffFL_f 0b0100;
-#define cliffFR_f 0b0010;
-#define cliffR_f 0b0001;
-
+char cliff_f = 0;
 char target_f = 0;
 
 char bumpers_f = 0;
 
-//make these defines.
-bool bumpR_f = 0;
-bool bumpL_f = 0;
-bool bumpF_f = 0;
-
 char boundary_f = 0;
-bool drop_f = 0;
+char drop_f = 0;
 
-TODO:
+static oi_t* sensor_data;
+static flags* flag_data;
+
+void check_flags();
+char set_drop_f();
+void check_cliff_sensors();
+void check_bumpers_f();
+
+
+/*TODO:
 WRITE LOGIC TO DIFFERENTIATE BETWEEN THINGS.
 
-/*
+
 cliff: ((sensor_data->wheelDropLeft)|(sensor_data->wheelDropLeft));
 IDENTIFY THE cliff
 */
 
 void check_flags()
 {
+  oi_update(sensor_data);
+
   set_drop_f();
   check_cliff_sensors();
   check_bumpers_f();
   check_boundary_f();
+
+
+  //            if(flag_data->cliff_f)
+  //            {
+  //              move_back_mm_at_speed(10, -DRIVE_SPEED, sensor_data);
+  //              oi_setWheels(0,0); //stop wheels
+  //              //TODO: transmit cliff data
+  //
+  //            }
+  //
+  //            else if(flag_data->bumpers_f)
+  //            {
+  //              //move_back_mm_at_speed(20, -DRIVE_SPEED, sensor_data);
+  ////              int cm = 20;
+  ////              int i = 0;
+  ////              move_straight(-DRIVE_SPEED, sensor_data);
+  ////              while (i < cm)
+  ////              {
+  ////                  oi_update(sensor_data);
+  ////                  i -= sensor_data->distance;
+  ////              }
+  ////              oi_setWheels(0,0); //stop wheels
+  //
+  //              //TODO:transmit small object data
+  //
+  //            }
+  //            else if(flag_data->boundary_f)
+  //            {
+  //
+  //              //TODO:transmit where boundary is
+  //            }
 }
 
-bool set_drop_f()
+char set_drop_f()
 {
-  if((sensor_data->wheelDropLeft)|(sensor_data->wheelDropLeft))
+  lcd_printf("%d %d %d %d",sensor_data->wheelDropLeft,sensor_data->wheelDropRight,sensor_data->cliffFrontLeft,0);
+  if((sensor_data->wheelDropLeft) || (sensor_data->wheelDropLeft))
   {
-    drop_f = 1;
+      int left_wheel = sensor_data->wheelDropLeft;
+      int right_wheel = sensor_data->wheelDropRight;
+      flag_data->drop_f = 1;
   }
-  return drop_f;
+
+  return flag_data->drop_f;
 }
 
 void check_cliff_sensors() //?? Not sure if this is correct ?? FIXME
 {
-  if((sensor_data->cliffLeft)|(sensor_data->cliffFrontLeft)|(sensor_data->cliffFrontRight)|(sensor_data->cliffRight))
+  if((sensor_data->cliffLeft) || (sensor_data->cliffFrontLeft) || (sensor_data->cliffFrontRight) || (sensor_data->cliffRight))
   {
-    if((sensor_data->cliffLeftSignal >= target_min) &&(sensor_data->cliffLeftSignal <= target_max))
-    {
-      target_f |= cliffL_s;
-    }
-    if(sensor_data->cliffLeft < target_min)
+
+    if(sensor_data->cliffLeft < TARGET_MIN) //TODO CHANGE TARGET_MIN AND MAX
     {
       cliff_f |= cliffL_s;
     }
 
-    if((sensor_data->cliffFrontLeftSignal >= target_min) &&(sensor_data->cliffFrontLeftSignal <= target_max))
-    {
-      target_f |= cliffFL_s;
-    }
-    if(sensor_data->cliffFrontLeft < target_min)
+    if(sensor_data->cliffFrontLeft < TARGET_MIN)
     {
       cliff_f |= cliffFL_s;
     }
 
-    if((sensor_data->cliffFrontRightSignal >= target_min) &&(sensor_data->cliffFrontRightSignal <= target_max))
-    {
-      target_f |= cliffFR_s;
-    }
-    if(sensor_data->cliffFrontRight < target_min)
+    if(sensor_data->cliffFrontRight < TARGET_MIN)
     {
       cliff_f |= cliffFR_s;
     }
 
-    if((sensor_data->cliffRightSignal >= target_min) &&(sensor_data->cliffRightSignal <= target_max))
-    {
-      target_f |= cliffR_s;
-    }
     if(sensor_data->cliffRight)
     {
       cliff_f |= cliffR_s;
     }
+  }
+}
 
     //check_if_target();
 
-}
 
 //bumpers_f MAKE like CLIFF
 void check_bumpers_f()
 {
-  if((sensor_data->bumpLeft)|(sensor_data->bumpRight))
+  if((sensor_data->bumpLeft) || (sensor_data->bumpRight))
   {
-    bumpers_f = 1;
-    if((sensor_data->bumpLeft)
+    if(sensor_data->bumpLeft)
     {
-      bumpL_f = 1;
+        bumpers_f |= bumpL_f;
     }
     if(sensor_data->bumpRight)
     {
-      bumpR_f = 1;
+        bumpers_f |= bumpR_f;
     }
-    if((sensor_data->bumpRight)&(sensor_data->bumpLeft))
+    if((sensor_data->bumpRight) && (sensor_data->bumpLeft))
     {
-      bumpF_f = 1;
+        bumpers_f |= bumpF_f;
     }
 
+  }
 }
 
 //boundary
 
 void check_boundary_f()
 {
-    if((sensor_data->cliffLeftSignal >= BOUNDARY)
+
     {
       boundary_f |= cliffL_s;
     }
@@ -129,4 +153,8 @@ void check_boundary_f()
     {
       cliff_f |= cliffR_s;
     }
+}
+
+flags* getFlags(){
+    return flag_data;
 }

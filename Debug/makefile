@@ -13,10 +13,13 @@ ORDERED_OBJS += \
 "./button.obj" \
 "./cmd_executer.obj" \
 "./command_parser.obj" \
-"./helloworld.obj" \
+"./exe_op.obj" \
+"./flags.obj" \
 "./ir.obj" \
 "./lcd.obj" \
+"./main.obj" \
 "./movement.obj" \
+"./music.obj" \
 "./objectcounter.obj" \
 "./open_interface.obj" \
 "./ping.obj" \
@@ -169,8 +172,8 @@ Final\ Project\ CyBot.hex: $(EXE_OUTPUTS)
 # Other Targets
 clean:
 	-$(RM) $(BIN_OUTPUTS__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "button.obj" "cmd_executer.obj" "command_parser.obj" "helloworld.obj" "ir.obj" "lcd.obj" "movement.obj" "objectcounter.obj" "open_interface.obj" "ping.obj" "ping2.obj" "servo.obj" "timer.obj" "tm4c123gh6pm_startup_ccs.obj" "uart.obj" "wifi.obj" 
-	-$(RM) "button.d" "cmd_executer.d" "command_parser.d" "helloworld.d" "ir.d" "lcd.d" "movement.d" "objectcounter.d" "open_interface.d" "ping.d" "ping2.d" "servo.d" "timer.d" "tm4c123gh6pm_startup_ccs.d" "uart.d" "wifi.d" 
+	-$(RM) "button.obj" "cmd_executer.obj" "command_parser.obj" "exe_op.obj" "flags.obj" "ir.obj" "lcd.obj" "main.obj" "movement.obj" "music.obj" "objectcounter.obj" "open_interface.obj" "ping.obj" "ping2.obj" "servo.obj" "timer.obj" "tm4c123gh6pm_startup_ccs.obj" "uart.obj" "wifi.obj" 
+	-$(RM) "button.d" "cmd_executer.d" "command_parser.d" "exe_op.d" "flags.d" "ir.d" "lcd.d" "main.d" "movement.d" "music.d" "objectcounter.d" "open_interface.d" "ping.d" "ping2.d" "servo.d" "timer.d" "tm4c123gh6pm_startup_ccs.d" "uart.d" "wifi.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

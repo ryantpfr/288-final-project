@@ -1,5 +1,8 @@
 #define RICK_ROLL			0 // length 11
-#define IMERPIAL_MARCH 		1 // length 19
+#define IMPERIAL_MARCH1 	1 // length 16
+#define IMPERIAL_MARCH2     2 // length 3
+#define BLUES_D             3 // length 14
+
 #define MARIO_UNDERWORLD	3 //
 #define MARIO_UNDERWATER	7
 

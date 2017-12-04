@@ -4,6 +4,7 @@ void timer1_init();
 void servo_set_degrees(float degrees);
 void calibration_test();
 void servo_set_degrees_bounded(float degrees);
+void servo_set_degrees_scan(float degrees);
 
 
 

@@ -5,6 +5,7 @@
 #include <stdbool.h>
 
 void transmit_str(char str[]);
+void transmit_str_num(char str[],int num);
 void uart_init(void);
 void uart_transmit(char c);
 void translate_and_transmit(char c);

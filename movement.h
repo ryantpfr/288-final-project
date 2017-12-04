@@ -17,3 +17,7 @@ void move_back_mm_at_speed(int cm, int speed, oi_t* sensor_data);
 void turn_right(int degrees,oi_t* sensor_data);
 
 void turn_left(int degrees, oi_t* sensor_data);
+
+void move_straight(int speed, oi_t* sensor_data);
+
+void move_stop(oi_t* sensor_data);
