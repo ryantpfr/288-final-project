@@ -11,18 +11,6 @@
 #include "music.h"
 
 
-
-/*enum op_cmds
-{
-    forward,
-    reverse,
-    left,
-    right,
-    scan,
-    song,
-    stop
-};*/
-
 /*
 Below is the new exe_move that handles all movement and scanning.
 */
@@ -60,6 +48,7 @@ void exe_op(op_cmds dir, oi_t* sensor_data)
         oi_setWheels(0,0);
         break;
     }
+
 }
 
 

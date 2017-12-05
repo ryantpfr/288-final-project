@@ -14,7 +14,7 @@ typedef enum
     reverse = 2,
     left = 3,
     right = 4,
-    scan = 121,
+    scan = 5,
     stop = 6,
     song1 = 7, //backup beep
     song2 = 8, //rick_roll

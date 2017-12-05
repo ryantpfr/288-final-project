@@ -66,15 +66,15 @@ void createObject(){
         minDegrees = midNum;
     }
 
-    char objData[] = {5,newObjectStart+theta/2,size>>8,size & 0xFF,pingMid>>2};
+    char objData[] = {5,newObjectStart,newObjectEnd,pingMid >> 8,pingMid};
 
-    //transmit_str_num(objData,5);
+    transmit_str_num(objData,5);
 
     //lcd_printf(objData);
 
     //while(true);
 
-    transmit_str(message);
+    //transmit_str(message);
 }
 
 void counter_write(int degrees, int ir, int ping){

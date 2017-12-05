@@ -31,7 +31,7 @@ void wifi_continue(){
 
 void init_all(oi_t *sensor_data){
 
-    //oi_init(sensor_data);
+    oi_init(sensor_data);
     IR_init();
     lcd_init();
     gpio_pb5_init();
@@ -39,26 +39,15 @@ void init_all(oi_t *sensor_data){
     button_init();
     ping_gpioInit();
     timer_3_init();
+    init_flags(sensor_data);
 
 
     uart_init();
 
-    //int success = WiFi_start("password1234");
+    int success = WiFi_start("password1234");
 
 }
 
-
-bool readSensors(oi_t *sensor_data){
-
-    if( sensor_data->bumpLeft == 1){
-        return true;
-    }
-    if( sensor_data->bumpRight == 1){
-        return true;
-    }
-
-    return false;
-}
 
 int main(void)
 {
@@ -67,21 +56,20 @@ int main(void)
     oi_t *sensor_data = oi_alloc();
     init_all(sensor_data);
 
-    //move_stop(sensor_data);
+    move_stop(sensor_data);
 
     wifi_continue();
 
     //load_songs();
 
-    //while(!(flag_data->drop_f))
+
     while(1)
     {
-        //check_flags();
+        check_flags();
 
         if(!readLCharRead())
         {//enters if the last character has not been acted on
-            //check_flags(); //TODO: store sensor flags.
-            //tx_curr_pos(); //TODO:
+
             if(!readLCharRead())
             {
               c = uart_receive_last();
@@ -98,7 +86,4 @@ int main(void)
         }
 
     }
-
-
-    while(true);
 }

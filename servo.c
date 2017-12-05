@@ -70,7 +70,7 @@ void servo_set_degrees_scan(float degrees){//from -90 -> 90
     TIMER1_TBMATCHR_R = (matcherVal & 0xFFFF); // if you want to move servo to the middle
     TIMER1_TBPMR_R = (matcherVal >> 16);
 
-    timer_waitMillis(50);
+    timer_waitMillis(80);
 
 }
 

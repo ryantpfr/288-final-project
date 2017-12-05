@@ -35,7 +35,7 @@ void move_straight(int speed, oi_t* sensor_data){
 
 void move_mm_at_speed(int cm, int speed, oi_t* sensor_data){
 
-    lcd_printf("hello world2");
+ //   lcd_printf("hello world2");
 
     int sum = 0;
        oi_setWheels(speed, speed); // move forward; full speed
@@ -49,7 +49,7 @@ void move_mm_at_speed(int cm, int speed, oi_t* sensor_data){
 
 void move_back_mm_at_speed(int cm, int speed, oi_t* sensor_data){
 
-    lcd_printf("hello world2");
+   // lcd_printf("hello world2");
 
     int sum = 0;
        oi_setWheels(-speed, -speed); // move forward; full speed
